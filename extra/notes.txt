@@ -1,0 +1,5 @@
+Removed punctuation of all lyrsics if it is the last character in a line
+
+Removed "ooooh" from 3_am.txt
+
+Removed reverb (like this) from everything_fades.txt

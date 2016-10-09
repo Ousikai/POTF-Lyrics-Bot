@@ -1,0 +1,3 @@
+I removed punctuation if it is the last character in a line
+
+Removed "ooooh" from 3_am.txt

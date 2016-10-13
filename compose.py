@@ -55,7 +55,7 @@ def get_song():
     
 # It's showtime      
 if __name__ == "__main__":
-    #Post tweet every 10 seconds
-    while True:
-        compose_tweet()
-        time.sleep(30)
+    #Post tweet every 30 minutes
+    #while True:
+    compose_tweet()
+    #    time.sleep(1800)

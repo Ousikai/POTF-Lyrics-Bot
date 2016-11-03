@@ -5,6 +5,7 @@ import random
 import tweepy
 from secrets import *
 import time
+import datetime
 
 # 1) Choose random song
 # 2) Grab random lyric from song
@@ -40,11 +41,17 @@ def tweet(text):
     api = tweepy.API(auth)
 
     # Send the tweet and log success or failure
-    if (len(text)<=140):
+    try:
         api.update_status(text)
-    else:
+        timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        #timestamp = "[TIMESTAMP]"
+        sys.stdout.write("Tweet successful![" + str(timestamp) + "]\n")
+        sys.stdout.write(text)
+        sys.stdout.write("-----------------------------------------------\n")
+    except:
         #Implement logging later...
-        sys.stdout.write("Twitter bot failed tweet\n")
+        sys.stdout.write("Tweet failed. Writing new tweet...\n")
+        compose_tweet()
     
 # Grab a random song from the lyrics folder
 def get_song():

@@ -44,7 +44,7 @@ def tweet(text):
         api.update_status(text)
     else:
         #Implement logging later...
-        sys.stdout.write("Twitter bot failed tweet")
+        sys.stdout.write("Twitter bot failed tweet\n")
     
 # Grab a random song from the lyrics folder
 def get_song():

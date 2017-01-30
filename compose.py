@@ -13,7 +13,7 @@ import datetime
 # 4) Repeat two more times
 # 5) Check if less than 140 chars. Repeat steps 1-5 if failure
 # 6) Tweet result!
-def compose_tweet():
+def compose_tweet(count):
     compose = ""
     for iter in range(0,3): 
         # Open the song file we want to use and create an array of lines
@@ -30,16 +30,20 @@ def compose_tweet():
         compose = compose + lyric
 
     # Tweet result!
-    tweet(compose)
+    tweet(compose, count)
 
 # Code I'm utilizing from https://github.com/molly/twitterbot_framework
-def tweet(text):
+def tweet(text, count):
     """Send out the text as a tweet."""
     # Twitter authentication
     auth = tweepy.OAuthHandler(C_KEY, C_SECRET)
     auth.set_access_token(A_TOKEN, A_TOKEN_SECRET)
     api = tweepy.API(auth)
 
+    # Stop trying to upload a tweet after 4 failed attemps
+    if (count >=4):
+        sys.stdout.write("4 failed attempts. Twitter is probably down heh. \n")
+        return 0
     # Send the tweet and log success or failure
     try:
         api.update_status(text)
@@ -51,7 +55,7 @@ def tweet(text):
     except:
         #Implement logging later...
         sys.stdout.write("Tweet failed. Writing new tweet...\n")
-        compose_tweet()
+        compose_tweet(count+1)
     
 # Grab a random song from the lyrics folder
 def get_song():
@@ -64,5 +68,5 @@ def get_song():
 if __name__ == "__main__":
     #Post tweet every 30 minutes
     #while True:
-    compose_tweet()
+    compose_tweet(1)
     #    time.sleep(1800)

@@ -27,6 +27,8 @@ def compose_tweet(count):
         # Choose random lyric based on file size, then add to compose[]
         ptr = random.randrange(length) 
         lyric = lines[ptr]
+        if "\n" not in lyric:
+          lyric = lyric + "\n" 
         compose = compose + lyric
 
     # Tweet result!
@@ -46,7 +48,7 @@ def tweet(text, count):
         return 0
     # Send the tweet and log success or failure
     try:
-        api.update_status(text)
+        #api.update_status(text)
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         #timestamp = "[TIMESTAMP]"
         sys.stdout.write("Tweet successful![" + str(timestamp) + "]\n")
@@ -67,6 +69,6 @@ def get_song():
 # It's showtime      
 if __name__ == "__main__":
     #Post tweet every 30 minutes
-    #while True:
-    compose_tweet(1)
-    #    time.sleep(1800)
+    while True:
+        compose_tweet(1)
+        time.sleep(1)

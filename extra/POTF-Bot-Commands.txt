@@ -1,4 +1,0 @@
-ps -ef
-nohup python compose.py &
-ps -x
-kill [insert pid here]

@@ -1,4 +1,6 @@
 secrets.py
 secrets.pyc
 unique_lyrics.py
-
+venv/
+packages/
+function.zip

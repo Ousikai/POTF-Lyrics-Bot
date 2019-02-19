@@ -1,11 +1,19 @@
 #!/usr/bin/env python
 import os
 import sys
-import random   
+import random
 import tweepy
 from secrets import *
 import time
 import datetime
+import json
+
+def lambda_handler(event, context):
+    compose_tweet(1)
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello from Lambda!')
+    }
 
 # 1) Choose random song
 # 2) Grab random lyric from song
@@ -15,20 +23,20 @@ import datetime
 # 6) Tweet result!
 def compose_tweet(count):
     compose = ""
-    for iter in range(0,3): 
+    for iter in range(0,3):
         # Open the song file we want to use and create an array of lines
         song_name = get_song()
         song_location = "lyrics/" + song_name
-        song = open(song_location,"r")    
+        song = open(song_location,"r")
         lines = song.readlines()
         song.close()
         length = len(lines)
-    
+
         # Choose random lyric based on file size, then add to compose[]
-        ptr = random.randrange(length) 
+        ptr = random.randrange(length)
         lyric = lines[ptr]
         if "\n" not in lyric:
-          lyric = lyric + "\n" 
+          lyric = lyric + "\n"
         compose = compose + lyric
 
     # Tweet result!
@@ -58,17 +66,9 @@ def tweet(text, count):
         #Implement logging later...
         sys.stdout.write("Tweet failed. Writing new tweet...\n")
         compose_tweet(count+1)
-    
+
 # Grab a random song from the lyrics folder
 def get_song():
     file_names = os.listdir("lyrics/")
     song_name = random.choice(file_names)
     return song_name
-
-    
-# It's showtime      
-if __name__ == "__main__":
-    #Post tweet every 6 hours
-    while True:
-        compose_tweet(1)
-        time.sleep(60*60*6)

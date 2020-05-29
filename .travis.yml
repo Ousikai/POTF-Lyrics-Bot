@@ -21,6 +21,8 @@ deploy:
   role: arn:aws:iam::599595163955:role/FEHGauntletBot # censor later
   handler_name: lambda_handler
   runtime: python3.6
+  on:
+      branch: AWS
   # module_name	Name of the module that exports the handler — type: string, requires: handler_name, default: index
   # description	Description of the Lambda being created or updated — type: string
   # timeout	Function execution time (in seconds) at which Lambda should terminate the function — type: string, default: 3

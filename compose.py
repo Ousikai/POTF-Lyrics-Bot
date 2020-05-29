@@ -3,13 +3,14 @@ import os
 import sys
 import random
 import tweepy
-from secrets import *
+# from secrets_poets import *
 import time
 import datetime
 import json
 
 def lambda_handler(event, context):
     # compose_tweet(1)
+    print("pizza")
     return {
         'statusCode': 200,
         'body': json.dumps('Hello from Lambda!')

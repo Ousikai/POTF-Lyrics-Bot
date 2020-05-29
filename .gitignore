@@ -1,6 +1,3 @@
-secrets.py
-secrets.pyc
-unique_lyrics.py
+secrets*
 venv/
-packages/
-function.zip
+unit_tests/__pycache__/
